@@ -19,9 +19,27 @@ A full-stack election platform for schools with:
 - `frontend/` React app (Vite)
 - `docker-compose.yml` PostgreSQL service
 
-## 1) Run Full Stack with Docker
+## Pre-Requisites
+1. Linux/Windows Machine(AWS EC2, Azure VM)
+2. Open Security Group of `5173`, `8000`
+3. Docker Installation
+    ```
+    sudo apt update && sudo apt install docker -y (Debian)
+    sudo yum install docker -y (Amazon Linux)
+    ```
+
+## 1) Run Full Stack with Docker-Compose
 
 From project root:
+
+1. First, copy the env example to the actual env file.
+```bash
+cp .env.example .env
+```
+
+2. Then Edit the .env file with actual desired values
+
+3. Then run:
 
 ```bash
 docker compose up --build -d
