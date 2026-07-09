@@ -41,6 +41,10 @@ services:
       context: ./frontend
       args:
         VITE_API_URL: ${VITE_API_URL}
+    env_file:
+      - ./.env
+    environment:
+      VITE_API_URL: ${VITE_API_URL}
     container_name: school-election-frontend
     restart: unless-stopped
     depends_on:

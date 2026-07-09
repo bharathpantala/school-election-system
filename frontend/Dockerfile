@@ -2,16 +2,23 @@ FROM node:20-alpine AS build
 
 WORKDIR /app
 
+ARG VITE_API_URL
+
 COPY package*.json ./
 RUN npm install
 
 COPY . .
+
+ENV VITE_API_URL=$VITE_API_URL
 
 RUN npm run build
 
 FROM nginx:1.27-alpine
 
 COPY --from=build /app/dist /usr/share/nginx/html
+COPY runtime-config.sh /docker-entrypoint.d/10-runtime-config.sh
+
+RUN chmod +x /docker-entrypoint.d/10-runtime-config.sh
 
 EXPOSE 80
 

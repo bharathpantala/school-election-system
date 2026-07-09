@@ -1,4 +1,6 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+const runtimeApiUrl = globalThis.__APP_CONFIG__?.VITE_API_URL;
+const buildApiUrl = import.meta.env.VITE_API_URL;
+const API_BASE_URL = runtimeApiUrl || buildApiUrl || "http://127.0.0.1:8000";
 
 async function request(path, options = {}, token) {
   const headers = {
