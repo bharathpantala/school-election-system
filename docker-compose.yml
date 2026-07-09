@@ -45,6 +45,8 @@ services:
       - ./.env
     environment:
       VITE_API_URL: ${VITE_API_URL}
+    volumes:
+      - ./frontend/runtime-config.sh:/docker-entrypoint.d/10-runtime-config.sh:ro
     container_name: school-election-frontend
     restart: unless-stopped
     depends_on:
